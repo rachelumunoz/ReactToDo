@@ -1,1 +1,1 @@
-Simple Timer App using React
+Simple To Do app using React
