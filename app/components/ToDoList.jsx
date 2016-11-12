@@ -1,4 +1,4 @@
- var React = require('react')
+var React = require('react')
 var ToDo = require('ToDo')
 
 var ToDoList = React.createClass({
