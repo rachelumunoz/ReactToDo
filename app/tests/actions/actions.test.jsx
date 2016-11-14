@@ -22,6 +22,24 @@ describe('Actions', ()=>{
     expect(res).toEqual(action)
   })
 
+  it('should generate add a todos action objecy', ()=>{
+    var todos = [{
+      id: 1,
+      text: 'text',
+      completed: false,
+      completedAt: undefined,
+      createdAt: 3300
+    }]
+
+    var action = {
+      type: 'ADD_TODOS',
+      todos
+    }
+    var res = actions.addToDos(todos )
+
+    expect(res).toEqual(action)
+  })
+
   it('should genereate toggle show completed action', ()=>{
     var action = {
       type: 'TOGGLE_SHOW_COMPLETED'
