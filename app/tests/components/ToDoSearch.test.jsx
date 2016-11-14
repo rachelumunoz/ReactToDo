@@ -4,29 +4,36 @@ var expect = require('expect')
 var $ = require('jQuery')
 var TestUtils = require('react-addons-test-utils')
 
-var ToDoSearch = require('ToDoSearch')
+import {ToDoSearch} from 'ToDoSearch'
 
 describe('ToDoSearch', ()=>{
   it('should exist',()=>{
     expect(ToDoSearch).toExist()
   })
 
-  it('should call onSearch with entered input text',()=>{
+  it('should dispatch setSearchText on input change',()=>{
     var searchText = "make a smoothie"
+    var action = {
+      type: 'SET_SEARCH_TEXT',
+      searchText
+    }
     var spy = expect.createSpy()
-    var toDoSeach = TestUtils.renderIntoDocument(<ToDoSearch onSearch={spy}/>)
+    var toDoSeach = TestUtils.renderIntoDocument(<ToDoSearch dispatch={spy}/>)
 
     toDoSeach.refs.searchText.value = searchText
     TestUtils.Simulate.change(toDoSeach.refs.searchText)
-    expect(spy).toHaveBeenCalledWith(false, "make a smoothie")
+    expect(spy).toHaveBeenCalledWith(action)
   })
 
-  it('should call onSearch with proper checked value', ()=>{
+  it('should dispatch toggleShowCompleted when checkbox checked', ()=>{
+    var action = {
+      type: 'TOGGLE_SHOW_COMPLETED'
+    }
     var spy = expect.createSpy()
-    var toDoSeach = TestUtils.renderIntoDocument(<ToDoSearch onSearch={spy}/>)
+    var toDoSeach = TestUtils.renderIntoDocument(<ToDoSearch dispatch={spy}/>)
 
     toDoSeach.refs.showCompleted.checked = true
     TestUtils.Simulate.change(toDoSeach.refs.showCompleted)
-    expect(spy).toHaveBeenCalledWith(true, '')
+    expect(spy).toHaveBeenCalledWith(action)
   })
 })

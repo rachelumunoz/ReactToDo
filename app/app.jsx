@@ -14,10 +14,6 @@ store.subscribe(()=>{
   console.log('new state', store.getState())
 })
 
-store.dispatch(actions.addToDo('understand this stuff'))
-store.dispatch(actions.setSearchText('stuff'))
-store.dispatch(actions.toggleShowCompleted())
-
 
 //Load Foundation
 $(document).foundation()
